@@ -53,7 +53,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/add-post",
+        path: "/add-posts",
         element: (
           <AuthLayout authentication>
             {" "}
@@ -79,9 +79,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router}/>
     </Provider>
-  </StrictMode>
 );

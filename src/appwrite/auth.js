@@ -35,7 +35,7 @@ export class AuthService {
 
   async login({ email, password }) {
     try {
-      return await this.account.createEmailPasswordSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password); //creating a session for the user.
     } catch (error) {
       console.error("Appwrite AuthService :: login ::", error);
       throw new Error("Login failed. Please check your credentials.");
@@ -44,7 +44,7 @@ export class AuthService {
 
   async getCurrentUser() {
     try {
-      const session = await this.account.getSession(); // Use the correct session method
+      const session = await this.account.get(); // Getting the session from appwrite
       if (session) {
         return await this.account.get();
       }

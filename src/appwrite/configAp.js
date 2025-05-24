@@ -15,34 +15,22 @@ export class Service {
     this.bucket = new Storage(this.client);
   }
 
-  async createPost({ title, slug, content, featuredImage, status, userId }) {
+  async createPost({ title, slug, content, featuredImg, status, userId }) {
     try {
-      // Check if slug already exists
-      const existingPost = await this.databases.listDocuments(
+      const createPost = await this.databases.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        [Query.equal("slug", slug)]
-      );
-
-      if (existingPost.documents.length > 0) {
-        throw new Error("Slug already exists.");
-      }
-
-      return await this.databases.createDocument(
-        conf.appwriteDatabaseId,
-        conf.appwriteCollectionId,
-        ID.unique(), // Use unique ID
+        ID.unique(),
         {
           title,
           content,
-          featuredImage,
+          featuredImg,
           status,
-          userId,
-          slug,
+          userID: userId,
         }
       );
+      return createPost;
     } catch (error) {
-      console.log("Appwrite Error :: ", error);
       throw error;
     }
   }
@@ -106,10 +94,6 @@ export class Service {
     }
   }
 
-  async listPosts(queries = [Query.equal("status", "active")]) {
-    return this.getPosts(queries); // Consider removing this if both do the same thing
-  }
-
   // File upload service
   async uploadFile(file) {
     try {
@@ -138,9 +122,9 @@ export class Service {
     }
   }
 
-  // getFilePreview(fileId) {
-  //   return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
-  // }
+  getFilePreview(fileId) {
+    return this.bucket.getFileView(conf.appwriteBucketId, fileId);
+  }
 }
 
 const appwriteService = new Service();

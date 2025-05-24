@@ -30,7 +30,7 @@ function PostForm({ post }) {
       }
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
-        featuredImage: file ? file.$id : post.featuredImage,
+        featuredImage: file ? file.$id : post.featuredImg,
       });
 
       if (dbPost) {
@@ -41,7 +41,7 @@ function PostForm({ post }) {
 
       if (file) {
         const fileId = file.$id;
-        data.featuredImage = fileId;
+        data.featuredImg = fileId;
         const dbPost = await appwriteService.createPost({
           ...data,
           userId: userData.$id,
@@ -110,9 +110,9 @@ function PostForm({ post }) {
           accept="image/png, image/jpg, image/jpeg, image/gif"
           {...register("image", { required: !post })}
         />
-        {post?.featuredImage && (
+        {post?.featuredImg && (
           <div className="w-full mb-4">
-            {renderImagePreview(post.featuredImage)}
+            {renderImagePreview(post.featuredImg)}
           </div>
         )}
         <Select

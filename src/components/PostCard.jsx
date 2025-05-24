@@ -6,9 +6,7 @@ function PostCard({ $id, title, featuredImg }) {
   let imageUrl = "";
 
   try {
-    imageUrl = featuredImg
-      ? appwriteService.getFilePreview(featuredImg).href
-      : "";
+    imageUrl = appwriteService.getFilePreview(featuredImg).href;
   } catch (error) {
     console.error("invalid featuredimage in postcard: ", featuredImg);
   }

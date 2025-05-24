@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Logo ,LogoutBtn} from '../index'
+import {Container ,LogoutBtn} from '../index'
 import { Link } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
@@ -42,11 +42,20 @@ function Header() {
     <header className='py-3 shadow bg-gray-500'>
       <Container>
         <nav className='flex text-center'>
-          <div className='text-2xl mt-1'>
+          {authStatus ? (
+            <div className='text-2xl mt-1'>
             <Link to='/'>
               BlogSpace
             </Link>
           </div>
+          ) : (
+            <div className='text-2xl'>
+            <Link to='/'>
+              BlogSpace
+            </Link>
+          </div>
+          )}
+          
           <ul className='flex ml-auto items-center'>
             {navItems.map((item) => (item.active) ? (
               <li key={item.name}>

@@ -2,7 +2,13 @@ import React from "react";
 import appwriteService from "../appwrite/configAp";
 import { Link } from "react-router";
 
-function PostCard({ $id, title, featuredImg }) {
+function PostCard({ $id, title, featuredImg, content }) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(content, "text/html");
+  const text = doc.body.textContent;
+
+  console.log(doc)
+
   let imageUrl = "";
 
   try {
@@ -24,6 +30,7 @@ function PostCard({ $id, title, featuredImg }) {
           )}
         </div>
         <h2 className="text-xl font-bold">{title}</h2>
+        <p>{text}</p>
       </div>
     </Link>
   );

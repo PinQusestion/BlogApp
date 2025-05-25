@@ -4,19 +4,23 @@ import { Container, PostCard } from "../components";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    appwriteService.getPosts().then((posts) => {
-      if (posts) {
-        setPosts(posts.documents);
-      }
-    });
+    appwriteService
+      .getPosts()
+      .then((posts) => {
+        if (posts) {
+          setPosts(posts.documents);
+        }
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   if (posts.length === 0) {
-    return (
+    return !loading ? (
       <div className="w-full py-8 mt-4 text-center">
-        <Container>
+        <Container>``
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
               <h1 className="text-2xl font-bold hover:text-gray-500">
@@ -26,9 +30,13 @@ function Home() {
           </div>
         </Container>
       </div>
+    ) : (
+      <div className="w-full py-8 flex justify-center">
+        <div className="loader"></div>
+      </div>
     );
   }
-  return (
+  return !loading ? (
     <div className="w-full py-8">
       <Container>
         <div className="flex flex-wrap">
@@ -39,6 +47,10 @@ function Home() {
           ))}
         </div>
       </Container>
+    </div>
+  ) : (
+    <div className="w-full py-8 flex justify-center">
+      <div className="loader"></div>
     </div>
   );
 }

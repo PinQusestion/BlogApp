@@ -27,13 +27,16 @@ function App() {
       <div className='w-full block'>
         <Header />
         <main>
-        {/* <Outlet /> */}
         <Outlet />
         </main>
         <Footer />
       </div>
     </div>
-  ) : (null)
+  ) : (
+    <div className='min-h-screen flex items-center justify-center bg-gray-400'>
+      <div className='loader'></div>
+    </div>
+  )
 }
 
 export default App

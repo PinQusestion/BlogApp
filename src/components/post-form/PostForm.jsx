@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, Select, RTE } from "../index";
 import appwriteService from "../../appwrite/configAp";
@@ -18,12 +18,14 @@ function PostForm({ post }) {
 
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+  const [loading, setLoading] = useState(false)
 
   const submit = async (data) => {
+    setLoading(true)
     if (post) {
       const file = data.image[0]
         ? appwriteService.uploadFile(data.image[0])
-        : null;
+        : appwriteService.uploadFile(post.featuredImg);
 
       if (file) {
         appwriteService.deleteFile(post.image);
@@ -34,6 +36,7 @@ function PostForm({ post }) {
       });
 
       if (dbPost) {
+        setLoading(false)
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
@@ -65,6 +68,22 @@ function PostForm({ post }) {
     return "";
   }, []);
 
+  const renderImagePreview = (featuredImg) => {
+    try {
+      if (featuredImg) {
+        const previewUrl = appwriteService.getFilePreview(featuredImg).href;
+        return <img src={previewUrl} alt="Featured" className="rounded-lg" />;
+      }
+    } catch (error) {
+      console.error("Error loading featured image:", featuredImg);
+    }
+    return (
+      <div className="w-full h-40 bg-gray-300 rounded-lg flex items-center justify-center text-gray-600 text-sm">
+        No Image Available
+      </div>
+    );
+  };
+
   React.useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "title") {
@@ -75,7 +94,7 @@ function PostForm({ post }) {
     return () => subscription.unsubscribe();
   }, [watch, slugTransform, setValue]);
 
-  return (
+  return !loading ? (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
       <div className="w-2/3 px-2">
         <Input
@@ -130,6 +149,10 @@ function PostForm({ post }) {
         </Button>
       </div>
     </form>
+  ): (
+    <div className="w-full h-min-screen flex justify-center items-center">
+      <div className="loader_2"></div>
+    </div>
   );
 }
 

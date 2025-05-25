@@ -37,7 +37,7 @@ function Header() {
   ];
 
   return (
-    <header className="py-3 shadow bg-gray-500">
+    <header className="top-0 left-0 w-full py-3 shadow bg-[#1d293b] text-white">
       <Container>
         <nav className="flex text-center">
           {authStatus ? (
@@ -54,7 +54,7 @@ function Header() {
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className="inline-block px-6 py-1.5 duration-200 hover:bg-blue-100 rounded-full"
+                    className="inline-block px-6 py-1.5 duration-200 hover:bg-blue-100 hover:text-black rounded-full"
                   >
                     {item.name}
                   </button>

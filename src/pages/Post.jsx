@@ -13,7 +13,8 @@ export default function Post() {
   const userData = useSelector((state) => state.auth.userData);
 
 
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  // const isAuthor = post && (userData ? post.userId === userData.$id : false);
+  const isAuthor = true;
 
   useEffect(() => {
     if (slug) {
@@ -44,7 +45,7 @@ export default function Post() {
           />
 
           {isAuthor && (
-            <div className="absolute right-6 top-6">
+            <div className="absolute right-6 top-6 bg-white">
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor="bg-green-500" className="mr-3">
                   Edit
@@ -56,10 +57,10 @@ export default function Post() {
             </div>
           )}
         </div>
-        <div className="w-full mb-6">
+        <div className="w-full mb-6 text-white">
           <h1 className="text-2xl font-bold">{post.title}</h1>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <div className="browser-css text-white">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;

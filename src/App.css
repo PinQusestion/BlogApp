@@ -3,8 +3,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #1a2336;
 }
-.loader {
+.loader{
+  color: white;
   width: fit-content;
   font-weight: bold;
   font-family: sans-serif;
@@ -15,6 +17,20 @@
 }
 .loader:before {
   content:"Loading..."
+}
+
+.loader_2 {
+  width: fit-content;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 30px;
+  padding-bottom: 8px;
+  background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+  animation: l2 2s linear infinite;
+}
+
+.loader_2:before{
+  content:"Submitting..."
 }
 @keyframes l2 {to{background-size: 100% 3px}}
 

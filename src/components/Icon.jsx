@@ -1,5 +1,5 @@
 import React from "react";
-import { Plus, LogIn, Home, FileText, LogOut } from "lucide-react";
+import { Plus, LogIn, Home, FileText, LogOut, CodeSquare } from "lucide-react";
 
 const iconMap = {
   Home,
@@ -9,9 +9,9 @@ const iconMap = {
   LogOut,
 };
 
-function Icon({ icon }) {
+function Icon({ icon, className }) {
   const LucideIcon = iconMap[icon];
-  return LucideIcon ? <LucideIcon size={18} className="hover:stroke-inherit"/> : null;
+  return LucideIcon ? <LucideIcon size={18} className={className}/> : null;
 }
 
 export default Icon

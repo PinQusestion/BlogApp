@@ -7,8 +7,6 @@ function PostCard({ $id, title, featuredImg, content }) {
   const doc = parser.parseFromString(content, "text/html");
   const text = doc.body.textContent;
 
-  console.log(doc)
-
   let imageUrl = "";
 
   try {

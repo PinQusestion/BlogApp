@@ -61,7 +61,7 @@ function Header() {
                       onClick={() => navigate(item.slug)}
                       className="inline-flex items-center px-6 py-1.5 duration-200 hover:text-cyan-400 rounded-full gap-1.5"
                     >
-                      <Icon icon={item.icon}/>
+                      <Icon icon={item.icon} className="group-hover:stroke-cyan-400"/>
                       {item.name}
                     </button>
                 </li>

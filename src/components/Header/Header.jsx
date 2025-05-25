@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, LogoutBtn } from "../index";
+import { Container, LogoutBtn, Icon} from "../index";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -13,26 +13,31 @@ function Header() {
       name: "Home",
       slug: "/",
       active: true,
+      icon: "Home"
     },
     {
       name: "Login",
       slug: "/login",
       active: !authStatus,
+      icon: "LogIn"
     },
     {
       name: "Signup",
       slug: "/signup",
       active: !authStatus,
+      icon: "LogIn"
     },
     {
       name: "All Posts",
       slug: "/all-posts",
       active: authStatus,
+      icon: "FileText"
     },
     {
       name: "Add Posts",
       slug: "/add-posts",
       active: authStatus,
+      icon: "Plus"
     },
   ];
 
@@ -52,12 +57,13 @@ function Header() {
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
-                  <button
-                    onClick={() => navigate(item.slug)}
-                    className="inline-block px-6 py-1.5 duration-200 hover:bg-blue-100 hover:text-black rounded-full"
-                  >
-                    {item.name}
-                  </button>
+                    <button
+                      onClick={() => navigate(item.slug)}
+                      className="inline-flex items-center px-6 py-1.5 duration-200 hover:text-cyan-400 rounded-full gap-1.5"
+                    >
+                      <Icon icon={item.icon}/>
+                      {item.name}
+                    </button>
                 </li>
               ) : null
             )}

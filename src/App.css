@@ -20,6 +20,7 @@
 }
 
 .loader_2 {
+  color: white;
   width: fit-content;
   font-weight: bold;
   font-family: sans-serif;
@@ -32,6 +33,17 @@
 .loader_2:before{
   content:"Submitting..."
 }
+
+.btn-blue{
+  background: linear-gradient(135deg, #47a0e9 0%, #1c77c6 100%);
+}
+
+.btn-red{
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  color: white;
+}
+
+
 @keyframes l2 {to{background-size: 100% 3px}}
 
 @keyframes logo-spin {

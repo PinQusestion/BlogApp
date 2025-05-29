@@ -115,7 +115,7 @@ function PostForm({ post }) {
           }}
         />
         <RTE
-          label="Content :"
+          label="Content (Max 255 words) :"
           name="content"
           control={control}
           defaultValue={getValues("content")}

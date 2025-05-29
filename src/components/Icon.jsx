@@ -1,5 +1,5 @@
 import React from "react";
-import { Plus, LogIn, Home, FileText, LogOut, CodeSquare } from "lucide-react";
+import { Plus, LogIn, Home, FileText, LogOut} from "lucide-react";
 
 const iconMap = {
   Home,

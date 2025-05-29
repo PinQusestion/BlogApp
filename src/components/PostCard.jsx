@@ -17,7 +17,7 @@ function PostCard({ $id, title, featuredImg, content }) {
 
   return (
     <Link to={`/post/${$id}`}>
-      <div className="w-full bg-gray-100 rounded-xl p-4">
+      <div className="rounded-2xl max-h-[500px] overflow-hidden bg-white dark:bg-slate-700 shadow-2xl p-5 transition-all cursor-pointer hover:shadow-indigo-200 dark:hover:shadow-cyan-800">
         <div className="w-full justify-center mb-4">
           {imageUrl ? (
             <img src={imageUrl} alt={title} className="rounded-xl" />
@@ -27,8 +27,8 @@ function PostCard({ $id, title, featuredImg, content }) {
             </div>
           )}
         </div>
-        <h2 className="text-xl font-bold">{title}</h2>
-        <p>{text}</p>
+        <h2 className="mt-5 text-left text-white text-xl font-semibold hover:text-indigo-600 dark:hover:text-cyan-400 transition-colors">{title}</h2>
+        <p className="text-left text-white truncate mt-3">{text}</p>
       </div>
     </Link>
   );

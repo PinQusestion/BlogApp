@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import authService from "../../appwrite/auth";
 import { logOut } from "../../store/authSlice";
-import Icon from "../Icon";
 import { LogOut } from "lucide-react";
 
 function LogoutBtn() {

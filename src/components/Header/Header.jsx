@@ -42,11 +42,11 @@ function Header() {
   ];
 
   return (
-    <header className="top-0 left-0 w-full py-3 shadow bg-[#1d293b] text-white">
+    <header className="top-0 left-0 w-full py-4 shadow bg-[#1d293b] text-white">
       <Container>
         <nav className="flex text-center">
           {authStatus ? (
-            <div className="text-2xl mt-1">BlogSpace</div>
+            <div className="text-2xl mt-1 font-bold">BlogSpace</div>
           ) : (
             <div className="text-2xl">
               BlogSpace
@@ -61,7 +61,7 @@ function Header() {
                       onClick={() => navigate(item.slug)}
                       className="inline-flex items-center px-6 py-1.5 duration-200 hover:text-cyan-400 rounded-full gap-1.5"
                     >
-                      <Icon icon={item.icon} className="group-hover:stroke-cyan-400"/>
+                      <Icon icon={item.icon} className="group-hover:stroke-cyan-400 active:stroke-cyan-400"/>
                       {item.name}
                     </button>
                 </li>

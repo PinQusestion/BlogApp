@@ -42,7 +42,7 @@ function Header() {
   ];
 
   return (
-    <header className="top-0 left-0 w-full py-4 shadow bg-[#1d293b] text-white">
+    <header className="top-0 fixed left-0 w-full z-50 py-4 shadow bg-[#1d293b] text-white">
       <Container>
         <nav className="flex text-center">
           {authStatus ? (

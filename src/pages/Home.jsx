@@ -89,7 +89,7 @@ function Home() {
     );
   }
   return !loading ? (
-    <div className="w-full py-8">
+    <div className="w-full py-8 mt-10">
       <Container>
         <h1 className="text-4xl text-white">
           Welcome to <span className="text-[#706df9]">BlogSpace</span>
@@ -113,8 +113,8 @@ function Home() {
           </button>
         </div>
         <div className="flex flex-col space-y-5 mt-10">
-          {actionItems.map((item) => (
-            <div className="bg-gray-100 p-8 flex flex-col space-y-5 items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          {actionItems.map((item,idx) => (
+            <div key={idx} className="bg-gray-100 p-8 flex flex-col space-y-5 items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div style={{ "--bg" : item.bg }} className="p-4 bg-[var(--bg)] rounded-4xl">
                 <Icon style={{ "--st" : item.stroke }} icon={item.icon} className="stroke-[var(--st)]"/>
               </div>
@@ -137,7 +137,7 @@ function Home() {
       </Container>
     </div>
   ) : (
-    <div className="w-full py-8 flex justify-center">
+    <div className="w-full py-8 mt-10 flex justify-center">
       <div className="loader"></div>
     </div>
   );

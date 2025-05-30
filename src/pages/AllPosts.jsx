@@ -54,7 +54,7 @@ function AllPosts() {
     );
   }
   return !loading ? (
-    <div className="w-full py-8">
+    <div className="w-full py-8 mt-10">
       <Container>
         <div className="flex flex-wrap">
           {posts.map((post) => (
@@ -66,7 +66,7 @@ function AllPosts() {
       </Container>
     </div>
   ) : (
-    <div className="w-full py-8 flex justify-center">
+    <div className="w-full py-8 mt-10 flex justify-center">
       <div className="loader"></div>
     </div>
   );

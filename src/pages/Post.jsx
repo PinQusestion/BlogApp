@@ -33,7 +33,6 @@ export default function Post() {
   };
 
   return post ? (
-    // <div className="py-8 bg-[#292d3d] mt-10 mb-10 rounded-2xl">
     <div className="relative overflow-hidden rounded-[24px] py-10 px-6 border border-white/10 bg-white/5 backdrop-blur-[20px] shadow-[0_20px_40px_rgba(0,0,0,0.3)] animate-fade-in-up before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent mt-10 mb-10">
       <Container>
         <div className="w-full flex justify-left mb-4 relative rounded-xl p-2">

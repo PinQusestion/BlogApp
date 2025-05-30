@@ -46,9 +46,9 @@ function Header() {
       <Container>
         <nav className="flex text-center">
           {authStatus ? (
-            <div className="text-2xl mt-1 font-bold">BlogSpace</div>
+            <div className="text-2xl text-[#706df9] mt-1 font-bold">BlogSpace</div>
           ) : (
-            <div className="text-2xl">
+            <div className="text-2xl text-[#706df9]">
               BlogSpace
             </div>
           )}

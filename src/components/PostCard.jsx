@@ -17,10 +17,10 @@ function PostCard({ $id, title, featuredImg, content }) {
 
   return (
     <Link to={`/post/${$id}`}>
-      <div className="rounded-2xl max-h-[500px] overflow-hidden bg-white dark:bg-slate-700 shadow-2xl p-5 transition-all cursor-pointer hover:shadow-indigo-200 dark:hover:shadow-cyan-800">
+      <div className="rounded-2xl h-full overflow-hidden bg-white dark:bg-slate-700 shadow-2xl p-5 transition-all cursor-pointer hover:shadow-indigo-200 dark:hover:shadow-cyan-800">
         <div className="w-full justify-center mb-4">
           {imageUrl ? (
-            <img src={imageUrl} alt={title} className="rounded-xl" />
+            <img src={imageUrl} alt={title} className="rounded-xl w-min h-[139.53px]" />
           ) : (
             <div className="w-full h-40 bg-gray-300 rounded-xl flex items-center justify-center text-gray-600 text-sm">
               No Image

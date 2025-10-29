@@ -10,8 +10,8 @@ Click the **Fork** button (top right corner of this page) to create your copy of
 
 ### 2. Clone Your Fork
 ```bash
-git clone https://github.com/<your-username>/Hydration_Tracker.git
-cd Hydration_Tracker
+git clone https://github.com/<your_username>/BlogApp.git
+cd BlogApp
 ```
 
 ### 3. Create a New Branch
@@ -22,7 +22,7 @@ git checkout -b feature/<your-feature-name>
 
 Examples:
 - `feature/add-dark-mode`
-- `bugfix/fix-hydration-logic`
+- `bugfix/fix-posting-logic`
 
 ### 4. Install Dependencies
 ```bash
@@ -43,7 +43,7 @@ Verify that everything works as expected before committing.
 Use clear, concise commit messages:
 ```bash
 git add .
-git commit -m "Add hydration reminder toast notification"
+git commit -m "Fixed the bug while u update the image of the post"
 ```
 
 ### 8. Push Your Changes
@@ -84,4 +84,4 @@ By contributing, you agree that your contributions will be licensed under the sa
 
 ---
 
-💧 **Stay hydrated, and happy coding!**
+**Stay hydrated, and happy coding!**

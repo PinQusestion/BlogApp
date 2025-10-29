@@ -23,14 +23,12 @@ function App() {
   },[])
 
   return !loading ? (
-    <div className='w-full min-h-screen flex flex-wrap content-between bg-[#1a2336]'>
-      <div className='w-full'>
-        <Header />
-        <main>
+    <div className='w-full flex flex-col bg-[#1a2336]' style={{ minHeight: '100%' }}>
+      <Header />
+      <main className='flex-grow'>
         <Outlet />
-        </main>
-        <Footer />
-      </div>
+      </main>
+      <Footer />
     </div>
   ) : (
     <div className='min-h-screen flex items-center justify-center bg-[#1a2336]'>

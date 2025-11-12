@@ -11,15 +11,15 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
             <Controller
                 name={name || "content"}
                 control={control}
-                render={({ field: { onChange } }) => (
+                render={({ field: { onChange, value } }) => (
                     <Editor
                         apiKey={config.tinymceApiKey}
-                        initialValue={defaultValue}
+                        value={value || defaultValue}
                         init={{
                             initialValue: defaultValue,
                             height: 500,
                             menubar: true,
-                            pluging: [
+                            plugins: [
                                 "image",
                                 "advlist",
                                 "autolink",
@@ -41,10 +41,10 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
                                 "wordcount",
                                 "anchor",
                             ],
-                            toolbar: "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
+                            toolbar: "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
                             content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
                         }}
-                    onEditorChange = {onChange}
+                        onEditorChange={onChange}
                     />
                 )}
             />

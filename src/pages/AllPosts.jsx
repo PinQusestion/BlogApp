@@ -58,20 +58,60 @@ function AllPosts() {
   return !loading ? (
     <div className="w-full py-12 mt-12">
       <Container>
-        {/* Header Section */}
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">All Posts</h1>
-          <p className="text-slate-400 text-lg">Discover amazing stories and articles from our community</p>
-          <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-4"></div>
+        {/* Professional Header Section */}
+        <div className="mb-16 animate-fade-in-down">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">Blog Posts</h1>
+              <p className="text-slate-400 text-lg">Explore amazing stories and articles</p>
+            </div>
+            <button 
+              onClick={() => navigate("/")}
+              className="hidden md:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl hover:shadow-blue-500/25"
+            >
+              ← Home
+            </button>
+          </div>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"></div>
         </div>
 
-        {/* Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <div key={post.$id} className="transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+        {/* Filter/Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 animate-fade-in-up" style={{animationDelay: '0.1s'}}>
+          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-white/10 rounded-xl p-4 backdrop-blur-sm">
+            <div className="text-slate-400 text-sm font-medium">Total Posts</div>
+            <div className="text-3xl font-bold text-white mt-1">{posts.length}</div>
+          </div>
+          <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl p-4 backdrop-blur-sm">
+            <div className="text-blue-400 text-sm font-medium">Browse</div>
+            <div className="text-white mt-1">Latest articles & stories</div>
+          </div>
+          <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-xl p-4 backdrop-blur-sm">
+            <div className="text-purple-400 text-sm font-medium">Community</div>
+            <div className="text-white mt-1">Read & discover content</div>
+          </div>
+        </div>
+
+        {/* Posts Grid with Enhanced Styling */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+          {posts.map((post, idx) => (
+            <div 
+              key={post.$id} 
+              className="group transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 animate-fade-in-up"
+              style={{animationDelay: `${0.05 * idx}s`}}
+            >
               <PostCard {...post} />
             </div>
           ))}
+        </div>
+
+        {/* Mobile Back Button */}
+        <div className="md:hidden mt-12 flex gap-3 justify-center">
+          <button 
+            onClick={() => navigate("/")}
+            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg"
+          >
+            ← Back to Home
+          </button>
         </div>
       </Container>
     </div>

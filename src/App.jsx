@@ -25,6 +25,7 @@ function App() {
   return !loading ? (
     <div className='w-full flex flex-col bg-[#1a2336]' style={{ minHeight: '100%' }}>
       <Header />
+      <h1>This is the home page</h1>
       <main className='flex-grow'>
         <Outlet />
       </main>

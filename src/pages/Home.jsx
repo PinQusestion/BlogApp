@@ -40,45 +40,81 @@ function Home() {
   useEffect(() => {
     appwriteService
       .getPosts()
-      .then((posts) => {
-        if (posts) {
-          setPosts(posts.documents);
+      .then((response) => {
+        if (response && response.documents) {
+          setPosts(response.documents);
         }
+      })
+      .catch((error) => {
+        console.error("Error fetching posts:", error);
+        setPosts([]);
       })
       .finally(() => setLoading(false));
   }, []);
 
   if (posts.length === 0 && authStatus && !loading) {
     return (
-      <div className="w-full py-8 mt-4 text-center">
+      <div className="w-full py-12 mt-12">
         <Container>
-          <div className="min-h-screen bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex items-center justify-center p-8 relative overflow-hidden rounded-2xl">
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-20 left-10 w-1 h-1 bg-blue-400 rounded-full opacity-30 animate-pulse"></div>
-              <div className="absolute top-60 right-20 w-1 h-1 bg-blue-400 rounded-full opacity-40 animate-pulse"></div>
-              <div className="absolute bottom-40 left-20 w-1 h-1 bg-blue-400 rounded-full opacity-35 animate-pulse"></div>
-              <div className="absolute bottom-80 right-40 w-1 h-1 bg-blue-400 rounded-full opacity-30 animate-pulse"></div>
-            </div>
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 md:p-20 shadow-2xl animate-fade-in-down min-h-[600px] flex items-center justify-center border border-slate-700">
+            {/* Decorative animated elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -mr-48 -mt-48 animate-pulse"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-slate-600/10 rounded-full blur-3xl -ml-48 -mb-48 animate-pulse"></div>
+            <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
 
-            <div className="text-center max-w-2xl mx-auto space-y-8 animate-fadeIn">
-              <h1 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
-                No posts have been uploaded yet
-              </h1>
+            <div className="relative z-10 text-center max-w-3xl mx-auto space-y-8">
+              {/* Emoji Icon */}
+              <div className="text-6xl md:text-7xl animate-bounce">📝</div>
 
-              <p className="text-lg md:text-xl text-slate-300 leading-relaxed px-4">
-                Start sharing your thoughts and ideas with the world. Create
-                your first blog post and begin your journey of storytelling and
-                knowledge sharing.
-              </p>
+              {/* Main Heading */}
+              <div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
+                  Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300">Creative Journey</span>
+                </h1>
+                <p className="text-base md:text-xl text-slate-300 leading-relaxed">
+                  You haven't created any posts yet. Share your first story, idea, or insight with our community today!
+                </p>
+              </div>
 
-              <div className="pt-4">
+              {/* Benefits */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8 px-4 md:px-0">
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-blue-500/50 rounded-xl p-4 text-left transition-all duration-300">
+                  <p className="text-2xl mb-2">✨</p>
+                  <p className="text-white font-semibold text-sm">Easy to Create</p>
+                  <p className="text-slate-400 text-xs mt-1">Simple editor with no coding required</p>
+                </div>
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-blue-500/50 rounded-xl p-4 text-left transition-all duration-300">
+                  <p className="text-2xl mb-2">👥</p>
+                  <p className="text-white font-semibold text-sm">Reach Audience</p>
+                  <p className="text-slate-400 text-xs mt-1">Get discovered by thousands of readers</p>
+                </div>
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 hover:border-blue-500/50 rounded-xl p-4 text-left transition-all duration-300">
+                  <p className="text-2xl mb-2">🎯</p>
+                  <p className="text-white font-semibold text-sm">Be Inspired</p>
+                  <p className="text-slate-400 text-xs mt-1">Connect with other creative minds</p>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap justify-center gap-4 pt-4">
                 <button
                   onClick={() => navigate("/add-posts")}
-                  className="btn-blue inline-flex items-center justify-center gap-3 px-8 py-4 text-white font-medium text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 active:scale-95"
+                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-blue-500/30 hover:scale-105 transition-all duration-300 transform active:scale-95"
                 >
-                  + Create Your First Post
+                  🚀 Write Your First Post
+                </button>
+                <button
+                  onClick={() => navigate("/all-posts")}
+                  className="px-8 py-4 bg-slate-800 border-2 border-slate-600 text-slate-100 font-bold rounded-xl hover:border-blue-500 hover:bg-slate-700 hover:scale-105 transition-all duration-300 transform active:scale-95"
+                >
+                  🔍 Browse Community
                 </button>
               </div>
+
+              {/* Encouragement Text */}
+              <p className="text-slate-400 text-sm italic pt-4">
+                Don't worry! Your first post can be about anything. Start with what inspires you most.
+              </p>
             </div>
           </div>
         </Container>

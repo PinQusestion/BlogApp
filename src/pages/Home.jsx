@@ -48,8 +48,8 @@ function Home() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (posts.length === 0 && authStatus) {
-    return !loading ? (
+  if (posts.length === 0 && authStatus && !loading) {
+    return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
           <div className="min-h-screen bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 flex items-center justify-center p-8 relative overflow-hidden rounded-2xl">
@@ -83,17 +83,13 @@ function Home() {
           </div>
         </Container>
       </div>
-    ) : (
-      <div className="w-full py-8 flex justify-center">
-        <div className="loader"></div>
-      </div>
     );
   }
   return !loading ? (
-    <div className="w-full py-6 mt-16">
+    <div className="w-full py-8 mt-12">
       <Container>
         {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#463fc2] via-[#5d54e6] to-[#706df9] p-8 md:p-12 mb-12 shadow-2xl">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#463fc2] via-[#5d54e6] to-[#706df9] p-8 md:p-16 mb-16 shadow-2xl">
           {/* Decorative elements */}
           <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl -mr-24 -mt-24"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -ml-32 -mb-32"></div>

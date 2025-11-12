@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function Post() {
   const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { slug } = useParams();
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ export default function Post() {
       appwriteService.getPost(slug).then((post) => {
         if (post) setPost(post);
         else navigate("/");
-      });
+      }).finally(() => setLoading(false));
     } else navigate("/");
   }, [slug, navigate]);
 
@@ -33,33 +34,71 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="relative mt-20 overflow-hidden rounded-[24px] py-10 px-6 border border-white/10 bg-white/5 backdrop-blur-[20px] shadow-[0_20px_40px_rgba(0,0,0,0.3)] animate-fade-in-up before:absolute before:top-0 before:left-0 before:right-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent mb-10">
+    <div className="w-full py-8 mt-16 mb-12">
       <Container>
-        <div className="w-full flex justify-left mb-4 relative rounded-xl p-2">
-          <img
-            src={appwriteService.getFilePreview(post.featuredImg)}
-            alt={post.title}
-            className="rounded-xl size-50"
-          />
-          <div className="ml-10">
-            <div className="w-full mb-6 text-white">
-              <h1 className="text-4xl font-bold text-left">{post.title}</h1>
+        {/* Main Post Container */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-800/50 via-slate-700/50 to-slate-900/50 p-8 md:p-12 border border-white/10 shadow-2xl backdrop-blur-md">
+          
+          {/* Featured Image */}
+          <div className="relative rounded-2xl overflow-hidden mb-8 shadow-xl">
+            <img
+              src={appwriteService.getFilePreview(post.featuredImg)}
+              alt={post.title}
+              className="w-full h-96 object-cover hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+          </div>
+
+          {/* Post Content */}
+          <div className="space-y-6">
+            {/* Title */}
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+                {post.title}
+              </h1>
+              <div className="h-1 w-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
             </div>
-            <div className="browser-css text-[#a4b0c0] text-left">
-              {parse(post.content)}
+
+            {/* Content */}
+            <div className="prose prose-invert max-w-none">
+              <div className="text-slate-300 text-lg leading-relaxed space-y-4 browser-css">
+                {parse(post.content)}
+              </div>
             </div>
-            <div className="browser-css"></div>
+          </div>
+
+          {/* Action Buttons */}
+          {isAuthor && (
+            <div className="mt-12 pt-8 border-t border-white/10 flex gap-4 flex-wrap">
+              <Link to={`/edit-post/${post.$id}`}>
+                <button className="btn-blue px-8 py-3 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 active:scale-95">
+                  ✏️ Edit Post
+                </button>
+              </Link>
+              <button 
+                className="btn-red px-8 py-3 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-red-500/25 active:scale-95"
+                onClick={deletePost}
+              >
+                🗑️ Delete Post
+              </button>
+            </div>
+          )}
+
+          {/* Back Button */}
+          <div className="mt-8">
+            <button 
+              onClick={() => navigate("/all-posts")}
+              className="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-2 transition-colors duration-300"
+            >
+              ← Back to All Posts
+            </button>
           </div>
         </div>
-        {isAuthor && (
-          <div className="w-fit h-fit ml-5">
-            <Link to={`/edit-post/${post.$id}`}>
-              <button className="btn-blue mr-2 text-white relative overflow-hidden px-6 py-2 rounded-lg font-semibold text-base border-none cursor-pointer transition-all duration-300 before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:transition-left before:duration-500 hover:before:left-[100%]">Edit</button>
-            </Link>
-            <button className="btn-red text-white relative overflow-hidden px-6 py-2 rounded-lg font-semibold text-base border-none cursor-pointer transition-all duration-300 before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/40 before:to-transparent before:transition-left before:duration-500 hover:before:left-[100%]" onClick={deletePost}>Delete</button>
-          </div>
-        )}
       </Container>
+    </div>
+  ) : loading ? (
+    <div className="w-full py-8 mt-20 flex justify-center">
+      <div className="loader"></div>
     </div>
   ) : null;
 }

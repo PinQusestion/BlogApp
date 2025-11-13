@@ -65,7 +65,7 @@ function Signup() {
         )}
 
         <form onSubmit={handleSubmit(create)} className="mt-8 space-y-5">
-          <div className="animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+          <div className="animate-fade-in-up signup-input" style={{animationDelay: '0.2s'}}>
             <label className="block mb-2 text-left text-slate-300 text-sm font-medium">Full Name</label>
             <Input
               placeholder="Enter your full name"
@@ -74,7 +74,7 @@ function Signup() {
             />
           </div>
 
-          <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+          <div className="animate-fade-in-up signup-input" style={{animationDelay: '0.3s'}}>
             <label className="block mb-2 text-left text-slate-300 text-sm font-medium">Email Address</label>
             <Input
               placeholder="Enter your email"
@@ -90,7 +90,7 @@ function Signup() {
             />
           </div>
 
-          <div className="animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+          <div className="animate-fade-in-up signup-input" style={{animationDelay: '0.4s'}}>
             <label className="block mb-2 text-left text-slate-300 text-sm font-medium">Password</label>
             <Input
               type="password"

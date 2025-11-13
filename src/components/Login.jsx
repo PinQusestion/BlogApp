@@ -66,7 +66,7 @@ function Login() {
         )}
 
         <form onSubmit={handleSubmit(login)} className="mt-8 space-y-5">
-          <div className="animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+          <div className="animate-fade-in-up login-input" style={{animationDelay: '0.2s'}}>
             <label className="block mb-2 text-left text-slate-300 text-sm font-medium">Email Address</label>
             <Input
               placeholder="you@example.com"
@@ -83,7 +83,7 @@ function Login() {
             />
           </div>
 
-          <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+          <div className="animate-fade-in-up login-input" style={{animationDelay: '0.3s'}}>
             <label className="block mb-2 text-left text-slate-300 text-sm font-medium">Password</label>
             <Input
               type="password"

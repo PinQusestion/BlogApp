@@ -181,6 +181,31 @@ input[type="text"]:not(:focus) {
   color: #fff !important;
 }
 
+/* Black text while typing (focus), white text when out of focus for login and signup inputs */
+.login-input input[type="email"]:focus,
+.login-input input[type="password"]:focus,
+.signup-input input[type="email"]:focus,
+.signup-input input[type="password"]:focus,
+.signup-input input[type="text"]:focus {
+  color: #000 !important;
+}
+
+.login-input input[type="email"]:not(:focus),
+.login-input input[type="password"]:not(:focus),
+.signup-input input[type="email"]:not(:focus),
+.signup-input input[type="password"]:not(:focus),
+.signup-input input[type="text"]:not(:focus) {
+  color: #fff !important;
+}
+
+.login-input input[type="email"]::placeholder,
+.login-input input[type="password"]::placeholder,
+.signup-input input[type="email"]::placeholder,
+.signup-input input[type="password"]::placeholder,
+.signup-input input[type="text"]::placeholder {
+  color: #666 !important;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
